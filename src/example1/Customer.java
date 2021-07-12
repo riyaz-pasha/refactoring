@@ -26,11 +26,9 @@ public class Customer {
         String result = String.format("Rental Record for %s \n", this.getName());
         while (_rentals.hasMoreElements()) {
             Rental eachRental = (Rental) _rentals.nextElement();
-            
-            frequentRenterPoints++;
 
-            if (eachRental.getMovie().getPriceCode() == Movie.NEW_RELEASE && eachRental.getDaysRented() > 1)
-                frequentRenterPoints++;
+            frequentRenterPoints += eachRental.getFrequentRenterPoints();
+            
             result += "\t" + eachRental.getMovie().getTitle() + "\t" + String.valueOf(eachRental.getCharge()) + "\n";
             totalAmount += eachRental.getCharge();
         }
